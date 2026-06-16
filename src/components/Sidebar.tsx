@@ -18,14 +18,13 @@ export function Sidebar() {
     activeView, setActiveView,
     balance, monthlyIncome, monthlyExpenses,
     accounts, activeAccountId, setActiveAccount,
-    profileData, activeProfileId, switchProfile, removeProfile,
+    profiles, activeProfileId, switchProfile, removeProfile,
     setShowAccountModal, setShowProfileModal,
   } = useFinanceStore()
 
   const [profilesOpen, setProfilesOpen] = useState(false)
 
-  const profiles = Object.values(profileData).map(pd => pd.profile)
-  const activeProfile = profileData[activeProfileId]?.profile
+  const activeProfile = profiles.find(p => p.id === activeProfileId)
 
   // Balance for sidebar card: per active account or all
   const activeAcc = activeAccountId ? accounts.find(a => a.id === activeAccountId) : null
